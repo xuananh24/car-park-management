@@ -2,6 +2,8 @@ package com.example.car_park_management.common.constant;
 
 public class PathConstant {
     public static final String API_BASE_URL = "/api";
+    public static final String API_AUTHENTICATION_URL = API_BASE_URL + "/authenticate";
+
     public static final String API_HR_URL = API_BASE_URL + "/hr";
     public static final String API_CAR_PARK_ADMIN_URL = API_BASE_URL + "/car-park-admin";
     public static final String API_EMPLOYEE_BASE_URL = API_HR_URL + "/employee";
