@@ -40,7 +40,7 @@ public class Employee {
     @Column(length = 10)
     private String employeePhone;
 
-    @Column(length = 20)
+    @Column
     private String password;
 
     @Column(length = 1)

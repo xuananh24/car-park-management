@@ -1,5 +1,8 @@
 package com.example.car_park_management.security;
 
+import com.example.car_park_management.common.constant.AuthorityConstant;
+import com.example.car_park_management.common.constant.Message;
+import com.example.car_park_management.common.constant.PathConstant;
 import com.example.car_park_management.repository.EmployeeRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,14 +11,16 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig {
     private final EmployeeRepository employeeRepository;
 
@@ -25,7 +30,9 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserInfoService(employeeRepository);
+        return username -> employeeRepository.findEmployeeByAccount(username)
+                .map(EmployeeDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException(Message.NOT_FOUND));
     }
 
     @Bean
@@ -35,18 +42,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .authorizeHttpRequests(o -> o.anyRequest().authenticated())
-                .formLogin(withDefaults())
-                .httpBasic(withDefaults())
-                .build();
+        http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(PathConstant.API_HR_URL + "/**").hasAuthority(AuthorityConstant.ROLE_HUMAN_RESOURCE_MANAGEMENT)
+                        .requestMatchers(PathConstant.API_CAR_PARK_ADMIN_URL + "/**").hasAuthority(AuthorityConstant.ROLE_CAR_PARK_ADMIN)
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(withDefaults());
+        return http.build();
     }
 
-    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
+//    @Bean
+//    public AuthenticationProvider authenticationProvider(){
+//        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+//        authenticationProvider.setUserDetailsService(userDetailsService());
+//        authenticationProvider.setPasswordEncoder(passwordEncoder());
+//        return authenticationProvider;
+//    }
 }

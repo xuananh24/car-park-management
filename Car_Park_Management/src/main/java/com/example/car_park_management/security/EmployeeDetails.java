@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UserInfo implements UserDetails {
+public class EmployeeDetails implements UserDetails {
 
     private String account;
     private String password;
     private GrantedAuthority grantedAuthority;
 
-    public UserInfo(Employee employee) {
+    public EmployeeDetails(Employee employee) {
         this.account = employee.getAccount();
         this.password = employee.getPassword();
         this.grantedAuthority = new SimpleGrantedAuthority(employee.getDepartment());

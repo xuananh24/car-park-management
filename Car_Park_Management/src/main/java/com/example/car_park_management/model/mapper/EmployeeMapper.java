@@ -23,6 +23,7 @@ public class EmployeeMapper {
 
     public static EmployeeInfoResponse toDTO(Employee employee) {
         return EmployeeInfoResponse.builder()
+                .id(employee.getEmployeeId())
                 .name(employee.getEmployeeName())
                 .phoneNumber(employee.getEmployeePhone())
                 .dateOfBirth(employee.getEmployeeBirthDate())

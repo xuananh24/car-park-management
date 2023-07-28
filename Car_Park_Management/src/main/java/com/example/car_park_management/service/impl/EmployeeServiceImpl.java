@@ -1,16 +1,11 @@
 package com.example.car_park_management.service.impl;
 
-import com.example.car_park_management.common.constant.Message;
 import com.example.car_park_management.model.mapper.EmployeeMapper;
 import com.example.car_park_management.model.request.EmployeeInfoRequest;
 import com.example.car_park_management.model.response.EmployeeInfoResponse;
 import com.example.car_park_management.repository.EmployeeRepository;
-import com.example.car_park_management.security.UserInfo;
 import com.example.car_park_management.service.EmployeeService;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
