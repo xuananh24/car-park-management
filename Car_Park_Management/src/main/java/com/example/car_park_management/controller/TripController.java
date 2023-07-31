@@ -30,7 +30,7 @@ public class TripController {
     }
 
     @PostMapping(PathConstant.API_TRIP_CREATION_URL)
-    public void create(@RequestParam @Valid TripInfoRequest tripInfoRequest) {
+    public void create(@RequestBody @Valid TripInfoRequest tripInfoRequest) {
         tripService.create(tripInfoRequest);
     }
 }

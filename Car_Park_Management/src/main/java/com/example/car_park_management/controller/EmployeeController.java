@@ -30,7 +30,7 @@ public class EmployeeController {
     }
 
     @PostMapping(PathConstant.API_EMPLOYEE_CREATION_URL)
-    public void create(@RequestParam @Valid EmployeeInfoRequest employeeInfoRequest) {
+    public void create(@RequestBody @Valid EmployeeInfoRequest employeeInfoRequest) {
         employeeService.create(employeeInfoRequest);
     }
 }

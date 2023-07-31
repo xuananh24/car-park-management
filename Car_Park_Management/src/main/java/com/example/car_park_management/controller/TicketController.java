@@ -31,7 +31,7 @@ public class TicketController {
     }
 
     @PostMapping(PathConstant.API_TICKET_CREATION_URL)
-    public void create(@RequestParam @Valid TicketInfoRequest ticketInfoRequest) {
+    public void create(@RequestBody @Valid TicketInfoRequest ticketInfoRequest) {
         ticketService.create(ticketInfoRequest);
     }
 

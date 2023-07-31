@@ -30,7 +30,7 @@ public class BookingOfficeController {
     }
 
     @PostMapping(PathConstant.API_BOOKING_OFFICE_CREATION_URL)
-    public void create(@RequestParam @Valid BookingOfficeInfoRequest bookingOfficeInfoRequest) {
+    public void create(@RequestBody @Valid BookingOfficeInfoRequest bookingOfficeInfoRequest) {
         bookingOfficeService.create(bookingOfficeInfoRequest);
     }
 }

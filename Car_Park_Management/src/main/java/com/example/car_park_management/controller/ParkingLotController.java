@@ -30,7 +30,7 @@ public class ParkingLotController {
     }
 
     @PostMapping(PathConstant.API_PARKING_LOT_CREATION_URL)
-    public void create(@RequestParam @Valid ParkingLotInfoRequest parkingLotInfoRequest) {
+    public void create(@RequestBody @Valid ParkingLotInfoRequest parkingLotInfoRequest) {
         parkingLotService.create(parkingLotInfoRequest);
     }
 }

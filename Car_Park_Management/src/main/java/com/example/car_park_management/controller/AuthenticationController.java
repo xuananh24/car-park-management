@@ -30,10 +30,9 @@ public class AuthenticationController {
     public JwtResponse authenticate(
             @RequestBody @NotNull AuthenticationRequest request) {
         String username = request.getUsername();
-        Employee employee = employeeRepository.findEmployeeByAccount(username).get();
+        Employee employee = employeeRepository.findEmployeeByAccount(username).orElseThrow(UnauthorizedRequestException::new);
         Optional<EmployeeDetails> employeeDetails = Optional.ofNullable(new EmployeeDetails(employee));
         String token = this.jwtTokenUtils.createToken(employeeDetails.get());
-        String a = token;
         return JwtResponse.builder().token(token).build();
     }
 

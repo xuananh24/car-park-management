@@ -30,7 +30,7 @@ public class CarController {
     }
 
     @PostMapping(PathConstant.API_CAR_CREATION_URL)
-    public void create(@RequestParam @Valid CarInfoRequest carInfoRequest) {
+    public void create(@RequestBody @Valid CarInfoRequest carInfoRequest) {
         carService.create(carInfoRequest);
     }
 }

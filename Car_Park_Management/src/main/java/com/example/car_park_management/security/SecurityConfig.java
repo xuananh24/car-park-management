@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(PathConstant.API_HR_URL + "/**").hasAuthority(AuthorityConstant.ROLE_HUMAN_RESOURCE_MANAGEMENT)
                         .requestMatchers(PathConstant.API_CAR_PARK_ADMIN_URL + "/**").hasAuthority(AuthorityConstant.ROLE_CAR_PARK_ADMIN)
+                        .requestMatchers(PathConstant.API_AUTHENTICATION_URL).permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults());
