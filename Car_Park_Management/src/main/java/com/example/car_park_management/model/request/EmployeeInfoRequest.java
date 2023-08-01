@@ -15,7 +15,7 @@ public class EmployeeInfoRequest {
     private String phoneNumber;
 
     @NotBlank(message = Message.BLANK_INPUT)
-    @Pattern(regexp = "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$", message = Message.INVALID_INPUT)
+    @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\\\\d|3[0-1])$", message = Message.INVALID_INPUT)
     private String dateOfBirth;
 
     @NotBlank(message = Message.BLANK_INPUT)

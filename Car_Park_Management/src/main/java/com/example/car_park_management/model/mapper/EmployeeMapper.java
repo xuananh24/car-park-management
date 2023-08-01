@@ -4,9 +4,9 @@ import com.example.car_park_management.model.request.EmployeeInfoRequest;
 import com.example.car_park_management.model.response.EmployeeInfoResponse;
 import com.example.car_park_management.model.entity.Employee;
 import com.example.car_park_management.utils.Converter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class EmployeeMapper {
-
     public static Employee toEntity(EmployeeInfoRequest employeeInfoRequest) {
         return Employee.builder()
                 .employeeName(employeeInfoRequest.getName())

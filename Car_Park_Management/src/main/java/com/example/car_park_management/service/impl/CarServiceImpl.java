@@ -37,6 +37,6 @@ public class CarServiceImpl implements CarService {
         );
         Car car = CarMapper.toEntity(carInfoRequest);
         car.setParkingLot(parkingLot);
-        carRepository.save(CarMapper.toEntity(carInfoRequest));
+        carRepository.save(car);
     }
 }

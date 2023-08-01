@@ -12,8 +12,7 @@ public class BookingOfficeInfoRequest {
     @Size(max = 50, message = Message.INVALID_INPUT)
     private String bookingOfficeName;
 
-    @NotBlank(message = Message.BLANK_INPUT)
-    @Pattern(regexp = "^[1-9]\\d*$", message = Message.INVALID_INPUT)
+    @Positive
     private Long tripId;
 
     @NotBlank(message = Message.BLANK_INPUT)
@@ -24,15 +23,14 @@ public class BookingOfficeInfoRequest {
     @Size(max = 50, message = Message.INVALID_INPUT)
     private String place;
 
-    @NotBlank(message = Message.BLANK_INPUT)
-    @Pattern(regexp = "^[1-9]\\d*$", message = Message.INVALID_INPUT)
+    @Positive
     private Long price;
 
     @NotBlank(message = Message.BLANK_INPUT)
-    @Pattern(regexp = "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$", message = Message.INVALID_INPUT)
+    @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\\\\d|3[0-1])$", message = Message.INVALID_INPUT)
     private String startContactDeadline;
 
     @NotBlank(message = Message.BLANK_INPUT)
-    @Pattern(regexp = "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$", message = Message.INVALID_INPUT)
+    @Pattern(regexp = "^^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\\\\d|3[0-1])$", message = Message.INVALID_INPUT)
     private String endContactDeadline;
 }

@@ -25,6 +25,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public void create(ParkingLotInfoRequest parkingLotInfoRequest) {
+
         parkingLotRepository.save(ParkingLotMapper.toEntity(parkingLotInfoRequest));
     }
 }

@@ -11,6 +11,7 @@ public class ParkingLotMapper {
                 .parkPrice(parkingLotInfoRequest.getPrice())
                 .parkName(parkingLotInfoRequest.getParkName())
                 .parkArea(parkingLotInfoRequest.getArea())
+                .parkPlace(parkingLotInfoRequest.getParkName())
                 .build();
     }
 
